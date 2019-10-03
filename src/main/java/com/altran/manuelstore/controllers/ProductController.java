@@ -7,7 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.HttpClientErrorException;
+
+import javax.print.attribute.standard.Media;
+import javax.validation.Valid;
+import java.util.stream.Collectors;
 
 
 @RestController
@@ -19,7 +26,12 @@ public class ProductController {
 
     // POST
     @PostMapping (consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity create(@RequestBody Produto produto){
+    public ResponseEntity create(@RequestBody @Valid Produto produto, BindingResult result){
+        // confere se existem erros no formato do produto
+        if (result.hasErrors())
+            return ResponseEntity.status(
+                    HttpStatus.BAD_REQUEST).body(result.getAllErrors().stream().map(ObjectError::getDefaultMessage).collect(Collectors.toList()));
+
         Produto p = productRepository.save(produto);
         return ResponseEntity.ok(p);
     }
@@ -31,12 +43,18 @@ public class ProductController {
     }
 
     // GET BY ID
-    @GetMapping(path = "/{id}")
+    @GetMapping(path = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity getById(@PathVariable Integer id){
         return ResponseEntity.ok(productRepository.findById(id));
     }
 
     // PUT (atualizar)
+    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity pu(@RequestBody Produto produto){
+
+        Produto p = productRepository.save(produto);
+        return ResponseEntity.ok(p);
+    }
 
     // DELETE
 

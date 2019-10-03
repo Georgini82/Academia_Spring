@@ -12,9 +12,11 @@ import javax.persistence.*;
 @Entity
 @Table (name = "tabelaatributo")
 public class Atributo{
+
     @Id
     @GeneratedValue (strategy = GenerationType.AUTO)
     private Integer id;
+
     @Column (name = "cor")
     private String cor;
 }
