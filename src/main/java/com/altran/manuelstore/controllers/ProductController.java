@@ -57,5 +57,9 @@ public class ProductController {
     }
 
     // DELETE
-
+    /*
+    @DeleteMapping(path = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody ResponseEntity delete(@PathVariable Integer id) {
+        return new ResponseEntity.ok();
+    }*/
 }
