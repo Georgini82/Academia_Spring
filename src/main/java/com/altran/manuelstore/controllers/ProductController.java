@@ -2,7 +2,6 @@ package com.altran.manuelstore.controllers;
 
 import com.altran.manuelstore.models.Produto;
 import com.altran.manuelstore.repository.ProductRepository;
-import org.apache.catalina.mapper.MapperListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -10,9 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.HttpClientErrorException;
-
-import javax.print.attribute.standard.Media;
 import javax.validation.Valid;
 import java.util.stream.Collectors;
 
@@ -57,9 +53,9 @@ public class ProductController {
     }
 
     // DELETE
-    /*
     @DeleteMapping(path = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody ResponseEntity delete(@PathVariable Integer id) {
-        return new ResponseEntity.ok();
-    }*/
+
+        return ResponseEntity.ok(id);
+    }
 }

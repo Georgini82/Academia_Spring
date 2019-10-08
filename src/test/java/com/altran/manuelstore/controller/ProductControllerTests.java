@@ -2,7 +2,6 @@ package com.altran.manuelstore.controller;
 
 import com.altran.manuelstore.models.Produto;
 import com.altran.manuelstore.repository.ProductRepository;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
